@@ -1,7 +1,8 @@
 require_relative '../config/environment'
-require_relative '../lib/app/type.rb'
-require_relative '../lib/app/driver.rb'
-require_relative '../lib/app/ride.rb'
+require_relative '../app/type.rb'
+require_relative '../app/driver.rb'
+require_relative '../app/ride.rb'
+require_relative '../db/seeds.rb'
 
 
 

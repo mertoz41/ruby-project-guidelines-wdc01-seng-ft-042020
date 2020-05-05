@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20200505202617) do
   end
 
   create_table "ride", force: :cascade do |t|
-    t.integer "driver_id"
-    t.integer "type_id"
-    t.integer "date"
+    t.text   "driver_name"
+    t.text   "type_name"
+    t.string "date"
   end
 
   create_table "type", force: :cascade do |t|
