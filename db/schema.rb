@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 20200505202617) do
 
   create_table "driver", force: :cascade do |t|
     t.string  "name"
-    t.integer "date"
     t.string  "rank"
     t.boolean "active"
   end
@@ -22,6 +21,7 @@ ActiveRecord::Schema.define(version: 20200505202617) do
   create_table "ride", force: :cascade do |t|
     t.integer "driver_id"
     t.integer "type_id"
+    t.integer "date"
   end
 
   create_table "type", force: :cascade do |t|

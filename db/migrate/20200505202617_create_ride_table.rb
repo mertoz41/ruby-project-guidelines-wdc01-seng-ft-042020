@@ -3,6 +3,7 @@ class CreateRideTable < ActiveRecord::Migration[5.0]
     create_table :ride do |t|
       t.integer :driver_id
       t.integer :type_id
+      t.integer :date
   end
 end
 end 
