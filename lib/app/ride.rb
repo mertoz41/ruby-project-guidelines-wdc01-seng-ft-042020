@@ -1,5 +1,5 @@
 class Ride < ActiveRecord::Base
-    belongs_to :drivers
-    belongs_to :types
+    belongs_to :driver
+    belongs_to :type
     
 end 

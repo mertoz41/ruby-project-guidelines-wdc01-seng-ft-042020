@@ -36,15 +36,15 @@ require "pry"
 
 welcome
 name = get_driver_from_user
-# binding.pry
 show_driver_rides(name)
+binding.pry
 
-date  type  price 
-5/1   tour  50 
-5/1   taxi  10
-5/1   taxi  15
-5/2   event 100
-5/2    tour 50 
+# date  type  price 
+# 5/1   tour  50 
+# 5/1   taxi  10
+# 5/1   taxi  15
+# 5/2   event 100
+# 5/2    tour 50 
 
 
 

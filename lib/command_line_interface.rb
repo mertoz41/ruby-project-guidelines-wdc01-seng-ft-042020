@@ -1,4 +1,4 @@
-require "pry"
+require 'pry'
 
 def welcome 
     puts "Welcome Artee Pedicab"
@@ -7,7 +7,7 @@ def welcome
 end 
 
 def get_driver_from_user
-    input = gets.chomp.downcase
+    input = gets.chomp
     if input.strip.empty?
         puts "Please enter a name"
         input = get_name_from_user
@@ -16,12 +16,25 @@ def get_driver_from_user
 end 
 
 def show_driver_rides(name)
-    d = Driver.all.find do |driver|
-        driver.name == name     
-    end
-       r = Ride.all(d.id)
-          
-    return d
+
+#     driver = Driver.all.find do |driver|
+#         driver.name == name
+#     end
+   
+
+#    dr = Ride.all.select do |ride|
+#         ride.driver_id == driver.id
+#    end 
+
+    driver = Driver.find_by(name: name)
+    driver.rides
+
+   puts "You are #{driver.name}"
+   binding.pry
+   
+    
+
+  
     # r = Ride.all.map do |ride|
     #     ride.driver_id == 
     # end
