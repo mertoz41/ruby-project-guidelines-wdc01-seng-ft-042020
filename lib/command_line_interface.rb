@@ -16,29 +16,9 @@ def get_driver_from_user
 end 
 
 def show_driver_rides(name)
-
-#     driver = Driver.all.find do |driver|
-#         driver.name == name
-#     end
-   
-
-#    dr = Ride.all.select do |ride|
-#         ride.driver_id == driver.id
-#    end 
-
     driver = Driver.find_by(name: name)
     driver.rides
-
-   puts "You are #{driver.name}"
-   binding.pry
-   
-    
-
-  
-    # r = Ride.all.map do |ride|
-    #     ride.driver_id == 
-    # end
-    
+   puts "You are #{driver.name}, #{driver.rides.first.date}, #{driver.rides.first.type.name}, #{driver.rides.first.price}"
 end
 
 
