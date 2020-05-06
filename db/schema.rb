@@ -12,19 +12,19 @@
 
 ActiveRecord::Schema.define(version: 20200505202617) do
 
-  create_table "driver", force: :cascade do |t|
+  create_table "drivers", force: :cascade do |t|
     t.string  "name"
     t.string  "rank"
     t.boolean "active"
   end
 
-  create_table "ride", force: :cascade do |t|
+  create_table "rides", force: :cascade do |t|
     t.text   "driver_name"
     t.text   "type_name"
     t.string "date"
   end
 
-  create_table "type", force: :cascade do |t|
+  create_table "types", force: :cascade do |t|
     t.string  "name"
     t.integer "price"
   end

@@ -1,9 +1,12 @@
 require_relative '../config/environment'
-require_relative '../app/type.rb'
-require_relative '../app/driver.rb'
-require_relative '../app/ride.rb'
-require_relative '../db/seeds.rb'
+require_relative '../lib/app/type.rb'
+require_relative '../lib/app/driver.rb'
+require_relative '../lib/app/ride.rb'
+require_relative '../lib/command_line_interface.rb'
+
+welcome
+driver = get_name_from_user
 
 
 
-puts "HELLO WORLD"
+
