@@ -6,6 +6,7 @@ require_relative '../lib/command_line_interface.rb'
 
 welcome
 driver = get_name_from_user
+add_user_input(driver) 
 
 
 

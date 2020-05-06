@@ -1,7 +1,7 @@
 def welcome 
     puts "Welcome Artee Pedicab"
     puts "Good job today!"
-    puts "What is your name?"
+    puts "Please enter the date for your log:"
 end 
 
 def get_name_from_user
