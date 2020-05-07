@@ -36,8 +36,11 @@ end
 
 def show_driver_rides(name)
     driver = Driver.find_by(name: name)
-    driver.rides
-   puts "You are #{driver.name}, #{driver.rides.first.date}, #{driver.rides.first.type.name}, #{driver.rides.first.price}"
+    d = driver.rides.first.date
+    dt = DateTime.parse(d).strftime("%m/%d/%Y")
+    
+    puts "#{driver.name}, #{dt}, #{driver.rides.first.type.name}, #{driver.rides.first.price}"
+    
 end
 
 # def get_log_from_driver
@@ -51,10 +54,15 @@ end
 
 def get_driver_log(name)
     puts "Let's get your log!"
-    puts "What is the date"
+    puts "What is the date? type as 06/03/2020"
     date = gets.chomp
-    real_date = Ride.find_by(date: date)
-    binding.pry 
+    splitted_date = date.split("/")
+    year = splitted_date[2].to_i
+    month = splitted_date[0].to_i
+    day = splitted_date[1].to_i
+
+    date2 = DateTime.new(year, month, day)
+    
     puts "What is the ride type"
     type = gets.chomp.capitalize
     real_type = Type.find_by(name: type)
@@ -62,17 +70,36 @@ def get_driver_log(name)
     puts "How much did you earn?"
     price = gets.chomp.to_i
 
-    m = Ride.create(date: date, driver: real_name, type: real_type, price: price)
-    puts "Driver: #{m.driver.name}, Date: #{m.date}, Type: #{m.type.name}, Price: $#{m.price}"
-    puts "Type 1 to create a new log. Type 2 to exit"
-    input = gets.chomp
+    m = Ride.create(date: date2, driver: real_name, type: real_type, price: price)
+    d = DateTime.parse(m.date).strftime("%m/%d/%Y")
+    
+    puts "Driver: #{m.driver.name}, Date: #{d} , Type: #{m.type.name}, Price: $#{m.price}"
+    puts "Type 1 to create a new log. Type 2 to exit "
+    if input == 1
     get_driver_log
+    elsif input == 2 
+        puts "Ok, let's confirm your logging before exit"
+        show_driver_rides
+        puts "Type 1 for correction, type 2 to really exit"
+        input = gets.chomp
+        if input == 1 
+            update function.
+        end
+end
 
- 
+    def update_log(driver_name)
+        Ride.find_by(name: driver_name)
+        puts "Which one would you like to amend? Type the id"
+    end
+
+
+
+
+
 end
 
 
-
+end
 
 
 
