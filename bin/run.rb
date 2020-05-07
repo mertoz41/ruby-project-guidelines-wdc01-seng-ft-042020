@@ -25,18 +25,20 @@ require "pry"
 
 # 5. ask and get how much the driver receive from that particular type of a ride
 
-# 6. go back to 
 
-
-
-# create Ride Class 
-
-# driver = get_name_from_user
-# add_user_input(driver) 
 
 welcome
-name = get_driver_from_user
-show_driver_rides(name)
+name = get_driver_name_from_user
+num = get_option_number
+get_option(num, name)
+
+
+
+
+
+
+
+
 # binding.pry
 
 # date  type  price 
@@ -46,5 +48,9 @@ show_driver_rides(name)
 # 5/2   event 100
 # 5/2    tour 50 
 
+# 2. okay, let's log your day. - create rides
+# one input should have create(date:449494, name:, type, price:)
+# anymore? 
+ 
 
 
