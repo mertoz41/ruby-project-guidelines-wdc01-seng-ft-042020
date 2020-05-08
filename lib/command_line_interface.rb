@@ -36,7 +36,7 @@ end
 def show_driver_rides(name)
     driver = Driver.find_by(name: name)
     rides = driver.rides.take(10)
-    rides.each do |ride| puts "#{ride.date}, #{ride.type.name}, $#{ride.price}"
+    rides.each do |ride| puts "#{ride.date.strftime("%m/%d/%Y")}, #{ride.type.name}, $#{ride.price}"
     end 
     # binding.pry 
     
@@ -93,11 +93,13 @@ def get_driver_log(name)
 end
     def home_page_new_entry
         puts "__Type 1 for homepage, type 2 to log out"
-        input = gets.chomp
+        input = gets.chomp.to_i
+        # binding.pry 
         if input == 1
             welcome
         elsif input == 2
             puts "__Successfuly logged out!"
+           
         end 
         
     end 

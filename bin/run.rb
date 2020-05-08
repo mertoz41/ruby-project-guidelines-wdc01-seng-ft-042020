@@ -32,7 +32,7 @@ name = get_driver_name_from_user
 num = get_option_number
 get_option(num, name) #1show_driver_rides, 2get_driver_log
 num2 = home_page_new_entry
-welcome
+
 
 
 # name = get_driver_name_from_user
