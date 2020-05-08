@@ -23,7 +23,8 @@ require 'pry'
         puts "--Type 1 for a new log," 
         puts "--Type 2 to update existing log,"
         puts "--Type 3 most recent rides,"
-        puts "--Type 4 for your log history."
+        puts "--Type 4 for your log history,"
+        
         num = gets.chomp
             if num.strip.empty? 
                 puts "--Please enter 1 or 2."  
@@ -38,12 +39,16 @@ require 'pry'
     def get_option(num, name)
         if num == 1 
             get_driver_log(name)
+            
         elsif num == 2
             update_log(name)
+            
         elsif num == 3
             show_recent_rides(name)
+            
         elsif num == 4
             show_driver_rides(name)
+
         end
     end
 
@@ -71,13 +76,16 @@ require 'pry'
         # binding.pry 
         if input == 1
             get_driver_log(name)
-            return home_page_new_entry(name)
+            nu = home_page_entry
+            return home_page_new_entry(nu, name)
         elsif input == 2
             update_log(name)
-            return home_page_new_entry(name)
+            lu = home_page_entry
+            return home_page_new_entry(lu, name)
         elsif input == 3
-            show_driver_rides(name)
-            return home_page_new_entry(name) 
+            show_recent_rides(name)
+           som = home_page_entry 
+            return home_page_new_entry(som, name) 
         elsif input == 4
             puts "Logged out!"
         end 
