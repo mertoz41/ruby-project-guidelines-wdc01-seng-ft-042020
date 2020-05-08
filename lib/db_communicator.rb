@@ -1,17 +1,33 @@
 require "pry"
 
-def get_option(num, name)
-    if num == 1 
-        show_driver_rides(name)
-    elsif num == 2
-        get_driver_log(name)
+
+
+def show_driver_rides(name)
+    driver = Driver.find_by(name: name)
+    rides = driver.rides.order(date: :desc)
+    # binding.pry
+    rides.each do |ride| puts "id:#{ride.id}. #{ride.date.strftime("%m/%d/%Y")}, #{ride.type.name}, $#{ride.price}"
     end
 end
 
+def show_recent_rides(name)
+    driver = Driver.find_by(name: name)
+    rides = driver.rides.order(date: :desc)
+    ride_rides = rides.take(10)
+    ride_rides.each do |ride| puts "id:#{ride.id}. #{ride.date.strftime("%m/%d/%Y")}, #{ride.type.name}, $#{ride.price}"
+    end
+end 
+
+
+
 def get_driver_log(name)
-    puts "__Let's log!"
-    puts "__What is the date? (type ex: 06/03/2020)"
+    puts "--Let's log!"
+    puts "--What is the date? (date ex: 06/03/2020)"
     date = gets.chomp
+    if date.strip.empty?
+        puts "--Please enter a date."
+        date = get_driver_log(name)
+    end 
     splitted_date = date.split("/")
     year = splitted_date[2].to_i
     month = splitted_date[0].to_i
@@ -19,51 +35,56 @@ def get_driver_log(name)
 
     date2 = DateTime.new(year, month, day)
     
-    puts "__What did you do?"
+    puts "--What type of ride? (type ex: tour, taxi, event)"
     type = gets.chomp.capitalize
     real_type = Type.find_by(name: type)
+    # binding.pry
     real_name = Driver.find_by(name: name)
-    puts "__How much did you earn for this?"
+    puts "--How much did you earn for this?"
     price = gets.chomp.to_i
 
     m = Ride.create(date: date2, driver: real_name, type: real_type, price: price)
     dt = m.date.to_s
     d = DateTime.parse(dt).strftime("%m/%d/%Y")
     
-    puts "#{m.driver.name}, #{d} , #{m.type.name}, $#{m.price}, Recorded"
-    
-    # if input == 1
-    # get_driver_log
-    # elsif input == 2 
-    #     puts "Ok, let's confirm your logging before exit"
-    #     show_driver_rides
-    #     puts "Type 1 for correction, type 2 to really exit"
-    #     input = gets.chomp
-    #     if input == 1 
-    #         update function.
-    #     end
+    puts "#{m.driver.name}, #{d} , #{m.type.name}, $#{m.price}, Logged."
 end
-    def home_page_new_entry
-        puts "__Type 1 for homepage, type 2 to log out"
-        input = gets.chomp
-        if input == 1
-            welcome
-        elsif input == 2
-            puts "__Successfuly logged out!"
-        end 
-        
+
+
+def update_log(name)
+    driver = Driver.find_by(name: name)
+    rides = driver.rides.order(date: :desc)
+    
+    rides.each do |ride| puts "id: #{ride.id}. #{ride.date.strftime("%m/%d/%Y")}, #{ride.type.name}, $#{ride.price}"
     end 
+    puts "--Type the id you wish to update."
+    
+    id = gets.chomp.to_i   
+    picked_id = rides.find(id)
+    puts "#{picked_id.date.strftime("%m/%d/%Y")}, #{picked_id.type.name}, $#{picked_id.price}"
+    puts "--Type new date. (date ex: 06/03/2020)"
+    date = gets.chomp
+    splitted_date = date.split("/")
+    year = splitted_date[2].to_i
+    month = splitted_date[0].to_i
+    day = splitted_date[1].to_i
+    date_updated = DateTime.new(year, month, day)
+    puts "--Type new type."
+    type = gets.chomp.capitalize
+    nu_type = Type.find_by(name: type)
+    puts "--Type new price."
+    price = gets.chomp.to_i
 
-            
-
-    def update_log(driver_name)
-        Ride.find_by(name: driver_name)
-        puts "Which one would you like to amend? Type the id"
-    end
-
-
+    picked_id.update(date: date_updated, type: nu_type, price: price)
+    # binding.pry
+    puts "Log updated:"
+    puts "#{picked_id.date.strftime("%m/%d/%Y")}, #{picked_id.type.name}, $#{picked_id.price}"
+   
+end
 
 
-def add_user_input(driver)
 
-end 
+
+# def add_user_input(driver)
+
+# end 
