@@ -26,7 +26,6 @@ def get_option_number
 end
 
 def get_option(num, name)
-    # binding.pry
     if num == 1 
         show_driver_rides(name)
     elsif num == 2
@@ -41,7 +40,7 @@ def show_driver_rides(name)
     # binding.pry
     dt = DateTime.parse(d).strftime("%m/%d/%Y")
     puts "#{driver.name}, #{dt}, #{driver.rides.first.type.name}, $#{driver.rides.first.price}"
-    
+        
 end
 
 # def get_log_from_driver
@@ -64,18 +63,18 @@ def get_driver_log(name)
 
     date2 = DateTime.new(year, month, day)
     
-    puts "__What is the ride type"
+    puts "__What did you do?"
     type = gets.chomp.capitalize
     real_type = Type.find_by(name: type)
     real_name = Driver.find_by(name: name)
-    puts "__How much did you earn?"
+    puts "__How much did you earn for this?"
     price = gets.chomp.to_i
 
     m = Ride.create(date: date2, driver: real_name, type: real_type, price: price)
     dt = m.date.to_s
     d = DateTime.parse(dt).strftime("%m/%d/%Y")
     
-    puts "Driver: #{m.driver.name}, Date: #{d} , Type: #{m.type.name}, Price: $#{m.price}"
+    puts "#{m.driver.name}, #{d} , #{m.type.name}, $#{m.price}"
     
     # if input == 1
     # get_driver_log
