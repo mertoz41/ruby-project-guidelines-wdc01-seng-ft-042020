@@ -1,30 +1,24 @@
 require 'pry'
 
-def welcome 
-    puts "Welcome Artee Pedicab"
-    puts "Good job today!"
-    puts "__Please enter your name."
-end 
-
-def get_driver_name_from_user
-    name = gets.chomp
-    if name.strip.empty?
-        puts "__Please enter a correct name!"
-        name = get_driver_name_from_user
-    
+    def welcome 
+        puts "Welcome to Artee Pedicab Driver Log"
+        puts "Another day of Ridng Happiness, terrific job today!"
     end 
-    return name.capitalize
-end 
 
-def get_option_number
-    puts "__Type 1 to see your record, type 2 to create a new log."
-    num = gets.chomp
-        if num.strip.empty? 
-            puts "Please enter 1 or 2"  
-        num = get_option_number
+    def get_driver_name_from_user
+        puts "__Enter your name"
+        name = gets.chomp
+            if name.strip.empty?
+                puts "__Enter your name!"
+                name = get_driver_name_from_user
+            elsif !Driver.all.find_by(name: name.capitalize) 
+                puts "__Incorrect driver name" 
+                puts "__If you are new, pls talk to a manager"
+                get_driver_name_from_user
+            end 
+        return name.capitalize
     end 
-    return num.to_i
-end
+
 
 def get_option(num, name)
     if num == 1 
@@ -49,14 +43,6 @@ def show_driver_rides(name)
         
 end
 
-# def get_log_from_driver
-#     input = gets.chomp
-#     if input.strip.empty?
-#         puts "Please log everything"
-#         input = get_log_from_driver
-#     end 
-#     return input
-# end
 
 def get_driver_log(name)
     puts "__Let's get your log!"
@@ -106,21 +92,24 @@ end
         
     end 
 
-            
+    def get_option_number
+        puts "__Type 1 for your record, type 2 for a new log."
+        num = gets.chomp
+            if num.strip.empty? 
+                puts "__Please enter 1 or 2"  
+                num = get_option_number
+            elsif !["1","2"].include?(num)    
+                puts "__1 or 2..."
+                num = get_option_number
+            end
+        return num.to_i
+    end
 
-    def update_log(driver_name)
-        Ride.find_by(name: driver_name)
-        puts "Which one would you like to amend? Type the id"
+    def exit_log
+        puts "Goodbye!"
     end
 
 
-
-
-
-# end
-
-
-# end
 
 
 
