@@ -35,11 +35,15 @@ end
 
 def show_driver_rides(name)
     driver = Driver.find_by(name: name)
+    rides = driver.rides.take(10)
+    rides.each do |ride| puts "#{ride.date}, #{ride.type.name}, $#{ride.price}"
+    end 
+    # binding.pry 
     
-    d = driver.rides.first.date.to_s
-    # binding.pry
-    dt = DateTime.parse(d).strftime("%m/%d/%Y")
-    puts "#{driver.name}, #{dt}, #{driver.rides.first.type.name}, $#{driver.rides.first.price}"
+    # d = driver.rides.first.date.to_s
+    # # binding.pry
+    # dt = DateTime.parse(d).strftime("%m/%d/%Y")
+    # puts "#{driver.name}, #{dt}, #{driver.rides.first.type.name}, $#{driver.rides.first.price}"
         
 end
 
