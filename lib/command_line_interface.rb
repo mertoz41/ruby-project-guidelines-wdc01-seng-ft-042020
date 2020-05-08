@@ -11,6 +11,7 @@ def get_driver_name_from_user
     if name.strip.empty?
         puts "__Please enter a correct name!"
         name = get_driver_name_from_user
+    
     end 
     return name.capitalize
 end 
@@ -35,7 +36,8 @@ end
 
 def show_driver_rides(name)
     driver = Driver.find_by(name: name)
-    rides = driver.rides.take(10)
+    rides = driver.rides.order(date: :desc)
+    # binding.pry
     rides.each do |ride| puts "#{ride.date.strftime("%m/%d/%Y")}, #{ride.type.name}, $#{ride.price}"
     end 
     # binding.pry 
